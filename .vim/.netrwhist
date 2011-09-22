@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/srinanan/Dropbox/bin'
+let g:netrw_dirhist_2='/home/srinanan/ncsu/cn'
+let g:netrw_dirhist_3='/home/srinanan/Dropbox/turn/ip/proj1'
+let g:netrw_dirhist_4='/home/srinanan/Dropbox/turn/ip/hw2'
+let g:netrw_dirhist_5='/home/srinanan/Dropbox/turn/cn/hw3'
