@@ -1,0 +1,91 @@
+#xhost + 2>1& > /dev/null
+#terminal won't get suspended when ctrl-s is pressed
+stty stop ''
+
+#alises go here
+alias cd..='cd ..'
+alias s='. $HOME/.bashrc'
+alias ls='ls --color=auto'
+alias dush='du -sh'
+alias vi='vim -X'
+
+alias ncturn='cd ~/Dropbox/turn/'
+alias ncip='cd ~/Dropbox/turn/ip'
+alias nccn='cd ~/Dropbox/turn/cn'
+alias ncal='cd ~/Dropbox/turn/algos'
+
+# env vars
+export PATH=$PATH:$HOME/Dropbox/bin:.
+export TASK=~/Dropbox/system/kubuntu
+export PS1='\u@\h \w\$ '
+export EDITOR='vim'
+#export CDPATH=~/Dropbox/system/kubuntu/configure
+#export HISTIGNORE="&:ls:ls *:mutt:[bf]g:exit"
+
+# dropbox chmod
+chmod +x ~/Dropbox/bin/*
+
+# common functions go here
+
+# office specific functions go here
+go()
+{
+  host=`hostname`
+  if [ ! -z "$1" ];
+  then
+    if [ "$1" -eq "1" ];
+    then
+      if [ "$host" != "klinux" ]; then
+        ssh -X sanantha@10.6.1.28
+      else
+        ssh -X sanantha@thunder12.bng.ind.starentnetworks.com
+      fi
+      return
+    elif [ "$1" -eq "2" ];
+    then
+      if [ "$host" != "klinux" ]; then
+        ssh -X sanantha@10.6.11.66
+      else
+        ssh -X sanantha@stinbng66
+      fi
+      return
+    elif [ "$1" -eq "3" ];
+    then
+      ssh -X sanantha@kilo3
+      return
+    fi
+  fi
+  echo "usage : go [number]"
+  echo "  number can be"
+  echo "  1 - thunder12"
+  echo "  2 - stinbng66"
+  echo "  3 - kilo3"
+}
+
+sanitize()
+{
+  if [ ! -z "$1" ];
+  then
+    if [ "$1" == "-v" ];
+    then
+      rm ~/.vimperator/info/default/history-command
+      rm ~/.vimperator/info/default/history-search
+      return
+    elif [ "$1" == "-b" ];
+    then
+      rm ~/.bash_history
+      return
+    fi
+  fi
+  echo "usage : sanitize [options]"
+  echo " -v - vimperator history"
+  echo " -b - bash history"
+}
+
+fortune
+
+# some interesting commands
+#mplayer -noframedrop -dumpfile out.rm -dumpstream rtsp://url/to/file.rm
+#sudo mplayer -vo fbdev <file>
+#
+alias pore='vi -c "cf make_op" -c "copen"'
