@@ -1,3 +1,7 @@
+#!/bin/bash
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 #xhost + 2>1& > /dev/null
 #terminal won't get suspended when ctrl-s is pressed
 stty stop ''
@@ -8,6 +12,7 @@ alias s='. $HOME/.bashrc'
 alias ls='ls --color=auto'
 alias dush='du -sh'
 alias vi='vim -X'
+alias pore='vi -X -c "cf make_op" -c "copen"'
 
 alias ncturn='cd ~/Dropbox/turn/'
 alias ncip='cd ~/Dropbox/turn/ip'
@@ -88,4 +93,8 @@ fortune
 #mplayer -noframedrop -dumpfile out.rm -dumpstream rtsp://url/to/file.rm
 #sudo mplayer -vo fbdev <file>
 #
-alias pore='vi -c "cf make_op" -c "copen"'
+
+if [ `ps -ef | grep screen | grep -v grep | wc -l` -eq 0 ];
+then
+  screen -S main
+fi
